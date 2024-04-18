@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text.Json;
 
 
 class BankTransferConfig
 {
     public string Lang { get; set; }
-    public TransferConfig Transfer { get; set; }
+    public TransferConfig transfer { get; set; }
     public string[] Methods { get; set; }
-    public ConfirmationConfig Confirmation { get; set; }
+    public ConfirmationConfig confirmation { get; set; }
 }
 
 class TransferConfig
@@ -29,18 +30,19 @@ class Program
     static void Main(string[] args)
     {
        
-        string configPath = "bank_transfer_config.json";
+        string configPath = "D:\\matkul jurusan rpl telu\\Semester 4\\praktikum kpl\\modul8\\jurnal_modul8_kpl\\jurnal_modul8_kpl\\bank_transfer_config.json";
         string configJson = File.ReadAllText(configPath);
         BankTransferConfig config = JsonSerializer.Deserialize<BankTransferConfig>(configJson);
 
         
         string lang = config.Lang;
-        int threshold = config.Transfer.Threshold;
-        int lowFee = config.Transfer.LowFee;
-        int highFee = config.Transfer.HighFee;
+        int threshold = config.transfer.Threshold;
+        int lowFee = config.transfer.LowFee;
+        int highFee = config.transfer.HighFee;
         string[] methods = config.Methods;
-        string enConfirmation = config.Confirmation.En;
-        string idConfirmation = config.Confirmation.Id;
+        string enconfirmation = config.confirmation.En;
+        string idconfirmation = config.confirmation.Id;
+
 
         
         Console.WriteLine(lang == "en" ? "Please insert the amount of money to transfer:" : "Masukkan jumlah uang yang akan di-transfer:");
@@ -74,14 +76,14 @@ class Program
         int selectedMethod = int.Parse(Console.ReadLine());
 
         
-        Console.WriteLine(lang == "en" ? "Please type \"{0}\" to confirm the transaction:" : "Ketik \"{0}\" untuk mengkonfirmasi transaksi:", enConfirmation);
-        Console.WriteLine(lang == "en" ? "Please type \"{0}\" to confirm the transaction:" : "Ketik \"{0}\" untuk mengkonfirmasi transaksi:", idConfirmation);
+        Console.WriteLine(lang == "en" ? "Please type \"{0}\" to confirm the transaction:" : "Ketik \"{0}\" untuk mengkonfirmasi transaksi:", enconfirmation);
+        Console.WriteLine(lang == "en" ? "Please type \"{0}\" to confirm the transaction:" : "Ketik \"{0}\" untuk mengkonfirmasi transaksi:", idconfirmation);
 
         
         string confirmation = Console.ReadLine();
 
         
-        if (confirmation.ToLower() == enConfirmation.ToLower() || confirmation.ToLower() == idConfirmation.ToLower())
+        if (confirmation.ToLower() == enconfirmation.ToLower() || confirmation.ToLower() == idconfirmation.ToLower())
         {
             Console.WriteLine(lang == "en" ? "The transfer is completed" : "Proses transfer berhasil");
         }

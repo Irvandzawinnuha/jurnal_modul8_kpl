@@ -1,0 +1,13 @@
+{
+    "lang": "id",
+    "transfer": {
+        "threshold": 10000000,
+        "low_fee": 5000,
+        "high_fee": 10000
+    },
+    "methods": [ "Transfer Bank", "E-Money", "Gerai" ],
+    "confirmation": {
+        "en": "Ya",
+        "id": "Ya"
+    }
+}
